@@ -1,6 +1,8 @@
 // import './style.css'
 
 import * as THREE from 'three';
+import { PointLightHelper, TetrahedronGeometry } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 // Set up a Scene, Camera, and a Renderer:
 // Scene is a container
@@ -49,8 +51,19 @@ const pointLight2 = new THREE.PointLight(0xffd900);
 pointLight2.position.set(8,8,20);
 scene.add(pointLight2);
 
+// visible light source indicator
+const lightHelper = new PointLightHelper(pointLight2);
+scene.add(lightHelper);
+
 const ambientLight = new THREE.AmbientLight(0xFFFFFF);
-// scene.add(ambientLight);
+scene.add(ambientLight);
+
+// show grid
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(gridHelper);
+
+// orbit controls
+const orbitControls = new OrbitControls(camera, renderer.domElement);
 
 // scene can be rendered to the DOM statically, but avoid calling the render method frequently
 // renderer.render(scene, camera);
