@@ -1,7 +1,7 @@
 // import './style.css'
 
 import * as THREE from 'three';
-import { PointLightHelper, TetrahedronGeometry } from 'three';
+import { MeshBasicMaterial, PointLightHelper, TetrahedronGeometry, TextureLoader } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 // Set up a Scene, Camera, and a Renderer:
@@ -79,9 +79,22 @@ function addPoint(){
   scene.add(point);
 
 }
-
+// populate the stars
 Array(180).fill().forEach(addPoint);
 
+const nebulae = new THREE.TextureLoader().load('nebulae.jpg');
+scene.background = nebulae;
+
+// texture mapping
+
+const globeEarthTexture = new THREE.TextureLoader().load('earth.jpg');
+const globeEarth = new THREE.Mesh(
+  new THREE.SphereGeometry(12),
+  new THREE.MeshBasicMaterial({map: globeEarthTexture})
+);
+ globeEarth.position.set(20, 20, 20);
+
+scene.add(globeEarth);
 
 // "game loop" recursion, rerenders the browser and animates the subject
 function animate(){
@@ -92,6 +105,9 @@ function animate(){
   torus.rotation.x += 0.01;
   torus.rotation.y += 0.005;
   torus.rotation.z += 0.01;
+
+  globeEarth.rotation.y += 0.0005;
+  
   orbitControls.update();
   renderer.render(scene, camera);
 }
