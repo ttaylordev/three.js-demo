@@ -37,7 +37,7 @@ const material = new THREE.MeshStandardMaterial({color: 0xFF8347});
 const torus = new THREE.Mesh(geometry, material);
 
 // add the torus to the scene
-scene.add(torus);
+// scene.add(torus);
 
 // lighting to all directions
 // const pointLight1 = new THREE.PointLight(0xFFFFFF);
@@ -47,8 +47,8 @@ scene.add(torus);
 // scene.add(pointLight1);
 
 // another light source
-const pointLight2 = new THREE.PointLight(0xffd900);
-pointLight2.position.set(8,8,20);
+const pointLight2 = new THREE.PointLight(0xffffff); //#32cfff //ffd900
+pointLight2.position.set(50, 20, 30);
 scene.add(pointLight2);
 
 // visible light source indicator
@@ -56,11 +56,11 @@ const lightHelper = new PointLightHelper(pointLight2);
 scene.add(lightHelper);
 
 const ambientLight = new THREE.AmbientLight(0xFFFFFF);
-scene.add(ambientLight);
+// scene.add(ambientLight);
 
 // show grid
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(gridHelper);
+// scene.add(gridHelper);
 
 // orbit controls
 const orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -80,21 +80,35 @@ function addPoint(){
 
 }
 // populate the stars
-Array(180).fill().forEach(addPoint);
+// Array(180).fill().forEach(addPoint);
 
+// background
 const nebulae = new THREE.TextureLoader().load('nebulae.jpg');
 scene.background = nebulae;
 
-// texture mapping
-
+// texture mapping example1 Earth
 const globeEarthTexture = new THREE.TextureLoader().load('earth.jpg');
+const normalEarthTexture = new THREE.TextureLoader().load('earth_NORM.png');
 const globeEarth = new THREE.Mesh(
   new THREE.SphereGeometry(12),
-  new THREE.MeshBasicMaterial({map: globeEarthTexture})
+  new THREE.MeshStandardMaterial({
+    map: globeEarthTexture,
+    normalMap: normalEarthTexture
+  })
 );
- globeEarth.position.set(20, 20, 20);
-
+ globeEarth.position.set(0,0,0);
 scene.add(globeEarth);
+
+// texture mapping example2 d20
+const d20Texture = new THREE.TextureLoader().load('dd20.png');
+const d20 = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(10),
+  new THREE.MeshBasicMaterial({map: d20Texture})
+);
+
+d20.position.set(-20, -20, -20);
+// scene.add(d20);
+
 
 // "game loop" recursion, rerenders the browser and animates the subject
 function animate(){
@@ -107,7 +121,7 @@ function animate(){
   torus.rotation.z += 0.01;
 
   globeEarth.rotation.y += 0.0005;
-  
+
   orbitControls.update();
   renderer.render(scene, camera);
 }
