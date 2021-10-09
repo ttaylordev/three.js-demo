@@ -29,7 +29,6 @@ const geometry = new THREE.TorusGeometry(10,2,15,100);
 // there are many predefined materials, custom shaders(WebGL) are great too.
 // basic materials do not require a lightsource
 const material = new THREE.MeshStandardMaterial({color: 0xFF8347});
-// const material = new THREE.MeshBasicMaterial({color: 0xFF8347, wireframe: true});
 
 // The mesh is the combination of geometry and material
 const torus = new THREE.Mesh(geometry, material);
@@ -38,19 +37,16 @@ const torus = new THREE.Mesh(geometry, material);
 scene.add(torus);
 
 // lighting to all directions
-// const pointLight1 = new THREE.PointLight(0xFFFFFF);
+const pointLight1 = new THREE.PointLight(0xFFFFFF);
 // position the light
-// pointLight1.position.set(5,5,5);
+pointLight1.position.set(5,5,5);
 // add the light to the scene
-// scene.add(pointLight1);
+scene.add(pointLight1);
 
 // another light source
 const pointLight2 = new THREE.PointLight(0xffd900);
 pointLight2.position.set(8,8,20);
 scene.add(pointLight2);
-
-const ambientLight = new THREE.AmbientLight(0xFFFFFF);
-// scene.add(ambientLight);
 
 // scene can be rendered to the DOM statically, but avoid calling the render method frequently
 // renderer.render(scene, camera);
