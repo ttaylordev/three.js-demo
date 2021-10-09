@@ -68,6 +68,21 @@ const orbitControls = new OrbitControls(camera, renderer.domElement);
 // scene can be rendered to the DOM statically, but avoid calling the render method frequently
 // renderer.render(scene, camera);
 
+function addPoint(){
+  const geometry = new THREE.SphereBufferGeometry(0.25, 19, 19);
+  let randomColor = Math.floor(Math.random()*16777215 - 42);
+  const material = new THREE.MeshStandardMaterial({color: randomColor})
+  const point = new THREE.Mesh( geometry, material );
+  const [x,y,z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
+
+  point.position.set(x, y, z);
+  scene.add(point);
+
+}
+
+Array(180).fill().forEach(addPoint);
+
+
 // "game loop" recursion, rerenders the browser and animates the subject
 function animate(){
   // tells the browser to call the function everytime it repaints the screen
@@ -77,7 +92,7 @@ function animate(){
   torus.rotation.x += 0.01;
   torus.rotation.y += 0.005;
   torus.rotation.z += 0.01;
-
+  orbitControls.update();
   renderer.render(scene, camera);
 }
 
