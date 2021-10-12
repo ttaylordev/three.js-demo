@@ -87,7 +87,7 @@ const nebulae = new THREE.TextureLoader().load('nebulae.jpg');
 scene.background = nebulae;
 
 // texture mapping example1 Earth
-const globeEarthTexture = new THREE.TextureLoader().load('earth.jpg');
+const globeEarthTexture = new THREE.TextureLoader().load('earth.png');
 const normalEarthTexture = new THREE.TextureLoader().load('earth_NORM.png');
 const normalVector = new THREE.Vector2(-.3,.2);
 const globeEarth = new THREE.Mesh(
@@ -96,7 +96,6 @@ const globeEarth = new THREE.Mesh(
     map: globeEarthTexture,
     normalMap: normalEarthTexture,
     normalScale: normalVector
-    // displacementMap: normalEarthTexture
   })
 );
  globeEarth.position.set(0,0,0);
