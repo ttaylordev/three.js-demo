@@ -89,11 +89,14 @@ scene.background = nebulae;
 // texture mapping example1 Earth
 const globeEarthTexture = new THREE.TextureLoader().load('earth.jpg');
 const normalEarthTexture = new THREE.TextureLoader().load('earth_NORM.png');
+const normalVector = new THREE.Vector2(-.3,.2);
 const globeEarth = new THREE.Mesh(
-  new THREE.SphereGeometry(12),
+  new THREE.SphereGeometry(12, 64, 64),
   new THREE.MeshStandardMaterial({
     map: globeEarthTexture,
-    normalMap: normalEarthTexture
+    normalMap: normalEarthTexture,
+    normalScale: normalVector
+    // displacementMap: normalEarthTexture
   })
 );
  globeEarth.position.set(0,0,0);
