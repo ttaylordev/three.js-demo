@@ -4,6 +4,16 @@ canvas {
   left: 0;
 }
 
+main {
+  position: absolute;
+  display: block;
+}
+
+#bg {
+  background-color: black;
+}
+
+
 /* colorTest {
   background-color: #ffffff;
 } */
