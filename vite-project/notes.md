@@ -12,13 +12,7 @@
 
 ## next commit:
 
- - populated index.html with lorum ipsum content
- - updated TODO's
- - position: absolute of main containter
- - moved unused canvas elements into seperate files
- - formatted notes.md
- - fixed text appearing behind canvas element
- - 1353 
+
 
 
 ## Better Commits:
@@ -116,3 +110,35 @@
     Development-Method: Pair Programming
     With: Tyler 
     ```
+### Git Hooks
+
+Client side hooks
+
+- pre-commit
+  - Static analysis
+  - Linting
+  - Spell-checks
+  - Codestyle
+
+- prepare-commit-msg
+- commit-msg
+  - Spell-checks
+  - Style-checks
+  - Rules for commits
+  - @param: filepath to commit message
+- post-commit
+  - trigger automated build system / better via server side hooks
+  - send a message to teammates via slack/discord/teams
+- pre-rebase
+- pre-push
+- post-rewrite
+- post-merge && post-checkout
+  - used to resolve external dependencies
+    - side load large binaries from CDN
+    - update NPM packages
+- There are several others checkout githooks.com for more
+
+1. ``` ./install_hooks.sh ```
+2. Document the hooks and commit rules within the README.md
+
+
