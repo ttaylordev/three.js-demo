@@ -1,8 +1,13 @@
-import './style.css';
+// import './style.css';
 
 import * as THREE from 'three';
 import { MeshBasicMaterial, PointLightHelper, TetrahedronGeometry, TextureLoader } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import D20 from './scripts/D20';
+import Earth from './scripts/Earth';
+// import Square from './scripts/square';
+
+
 
 // Set up a Scene, Camera, and a Renderer:
 // Scene is a container
@@ -29,7 +34,7 @@ scene.add(pointLight2);
 
 // show grid
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(gridHelper);
+// scene.add(gridHelper);
 
 // orbit controls
 const orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -55,6 +60,13 @@ const globeEarth = new THREE.Mesh(
 );
  globeEarth.position.set(0,0,0);
 scene.add(globeEarth);
+
+const d20 = new D20('d20.png', 10)
+d20.setPosition(-20, -20, -20);
+
+// console.log(d20.d20);
+scene.add(d20.d20);
+
 
 function animate() {
   requestAnimationFrame( animate );

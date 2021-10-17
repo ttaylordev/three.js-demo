@@ -92,9 +92,9 @@ function animate() {
   // requestAnimationFrame( animate );
 
   // each shape has properties, rotation, shape, scale
-  // arcShape.rotation.x += 0.01;
-  // arcShape.rotation.y += 0.005;
-  // arcShape.rotation.z += 0.01;
+  arcShape.rotation.x += 0.01;
+  arcShape.rotation.y += 0.005;
+  arcShape.rotation.z += 0.01;
 
   renderer.render(scene, camera);
 }
